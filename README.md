@@ -1,4 +1,23 @@
 # ijkplayer
+## 编译设置
+- 下载 ijkplayer-ios
+git clone https://github.com/Bilibili/ijkplayer.git ijkplayer-ios
+- 到` ijkplayer-ios`目录中
+cd ijkplayer-ios
+- 切换到 `k0.5.1` 分支
+git checkout -B latest k0.5.1
+- 运行iOS初始化脚本
+./init-ios.sh
+- 进入到 iOS 文件夹
+cd iOS
+- 清空编译
+./compile-ffmpeg.sh clean
+- 编译全部,比较耗时,需要等待
+./compile-ffmpeg.sh all
+- 使用Xcode打开ios文件夹下面的 IJKMediaPlayer 项目,分别在模拟器和真机上编译IJKMediaFramework.framework（避免跟IJKMediaFrameworkWithSSL.framework混淆）
+- 合并真机与模拟器的库：lips -create Debug-iphoneos/IJKMediaFramework.framework Debug-iphonesimulator/IJKMediaFramework.framework -o IJKMediaFramework.framework
+- 集成时需要在Build Phases-Link Binary with Libraries中添加libz.tbd和libc++.tbd，或者在.podspec中添加s.libraries = ['z', 'c++']
+
 
  Platform | Build Status
  -------- | ------------
