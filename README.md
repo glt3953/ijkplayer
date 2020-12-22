@@ -15,9 +15,9 @@ cd iOS
 - 编译全部,比较耗时,需要等待
 ./compile-ffmpeg.sh all
 - 使用Xcode打开ios文件夹下面的 IJKMediaPlayer 项目,分别在模拟器和真机上编译IJKMediaFramework.framework（避免跟IJKMediaFrameworkWithSSL.framework混淆）
-- 合并真机与模拟器的库：lips -create Debug-iphoneos/IJKMediaFramework.framework Debug-iphonesimulator/IJKMediaFramework.framework -o IJKMediaFramework.framework
+- 合并真机与模拟器的库：lipo -create Debug-iphoneos/IJKMediaFramework.framework/IJKMediaFramework Debug-iphonesimulator/IJKMediaFramework.framework/IJKMediaFramework -o IJKMediaFramework
 - 集成时需要在Build Phases-Link Binary with Libraries中添加libz.tbd和libc++.tbd，或者在.podspec中添加s.libraries = ['z', 'c++']
-
+- 详情参考：iOS直播-播放基于RTMP协议的视频 https://www.jianshu.com/p/a7d9ed02cf40
 
  Platform | Build Status
  -------- | ------------
